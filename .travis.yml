@@ -5,14 +5,18 @@ python:
 addons:
   firefox: 47.0.1
 env:
-- TOXENV=tests DISPLAY=:99.0
+- TOXENV=tests DISPLAY=:99.0 FILES="tests/*.py tests/webdriver/*.py"
+- TOXENV=marionette DISPLAY=:99.0 FILES=tests/marionette/*.py
 - TOXENV=flake8
+matrix:
+  allow_failures:
+    - env: TOXENV=marionette DISPLAY=:99.0 FILES=tests/marionette/*.py
 install:
 - pip install tox
 before_script:
 - sh -e /etc/init.d/xvfb start
 script:
-- tox
+- tox $FILES
 notifications:
   email: webqa-ci@mozilla.org
 deploy:
