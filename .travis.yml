@@ -7,12 +7,6 @@ addons:
 env:
   global:
     - DISPLAY=:99.0
-  matrix:
-    - TOXENV=py27
-    - TOXENV=py27-marionette
-    - TOXENV=py35
-    - TOXENV=py35-marionette
-    - TOXENV=flake8
 matrix:
   allow_failures:
     - env: TOXENV=py35-marionette
