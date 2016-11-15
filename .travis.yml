@@ -5,11 +5,7 @@ python:
 addons:
   firefox: 47.0.1
 env:
-  global:
-    - DISPLAY=:99.0
-matrix:
-  allow_failures:
-    - env: TOXENV=py35-marionette
+  - DISPLAY=:99.0
 install:
   - pip install tox-travis
 before_script:
