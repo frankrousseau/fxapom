@@ -8,18 +8,21 @@ env:
   global:
     - DISPLAY=:99.0
   matrix:
-    - TOXENV=tests FILES="tests/*.py tests/webdriver/*.py"
-    - TOXENV=marionette FILES=tests/marionette/*.py
+    - TOXENV=py27
+    - TOXENV=py27-marionette
+    - TOXENV=py35
+    - TOXENV=py35-marionette
     - TOXENV=flake8
 matrix:
   allow_failures:
-    - env: TOXENV=marionette DISPLAY=:99.0 FILES=tests/marionette/*.py
+    - env: TOXENV=py35-marionette
 install:
-- pip install tox
+  - pip install tox
+  - pip install tox-travis
 before_script:
-- sh -e /etc/init.d/xvfb start
+  - sh -e /etc/init.d/xvfb start
 script:
-- tox $FILES
+  - tox $FILES
 notifications:
   email: webqa-ci@mozilla.org
 deploy:
