@@ -1,13 +1,16 @@
 language: python
 python: 
-    - 2.7
-    - 3.5
+  - 2.7
+  - 3.5
 addons:
   firefox: 47.0.1
 env:
-- TOXENV=tests DISPLAY=:99.0 FILES="tests/*.py tests/webdriver/*.py"
-- TOXENV=marionette DISPLAY=:99.0 FILES=tests/marionette/*.py
-- TOXENV=flake8
+  global:
+    - DISPLAY=:99.0
+  matrix:
+    - TOXENV=tests FILES="tests/*.py tests/webdriver/*.py"
+    - TOXENV=marionette FILES=tests/marionette/*.py
+    - TOXENV=flake8
 matrix:
   allow_failures:
     - env: TOXENV=marionette DISPLAY=:99.0 FILES=tests/marionette/*.py
