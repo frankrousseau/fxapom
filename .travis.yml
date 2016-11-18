@@ -4,10 +4,40 @@ python:
   - 3.5
 addons:
   firefox: 47.0.1
-env:
-  - DISPLAY=:99.0
+matrix:
+  include:
+    - python: 2.7
+      env: 
+        - TOXENV=flake8
+    - python: 2.7
+      env: 
+        - DISPLAY=:99.0
+        - TOXENV=py27
+    - python: 2.7
+      env: 
+        - DISPLAY=:99.0
+        - TOXENV=py27-marionette
+    - python: 3.5
+      env: TOXENV=flake8
+    - python: 3.5
+      env: 
+        - DISPLAY=:99.0
+        - TOXENV=py35
+    - python: 3.5
+      env: 
+        - DISPLAY=:99.0
+        - TOXENV=py35-marionette
+  exclude:
+    - python: 2.7
+    - python: 3.5
+
+  allow_failures:
+    - python: 3.5
+      env: 
+        - DISPLAY=:99.0
+        - TOXENV=py35-marionette
 install:
-  - pip install tox-travis
+  - pip install tox
 before_script:
   - sh -e /etc/init.d/xvfb start
 script:
