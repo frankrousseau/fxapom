@@ -10,19 +10,20 @@ matrix:
   include:
     - python: 2.7
       env: 
-        - TOXENV=py27-marionette
+        - MARIONETTE=true
     - python: 2.7
       env: 
-        - TOXENV=flake8
+        - FLAKE8=true
     - python: 3.5
       env: 
-        - TOXENV=py35-marionette
+        - MARIONETTE=true
     - python: 3.5
       env: 
-        - TOXENV=flake8
+        - FLAKE8=true
   allow_failures:
-    - env: 
-        - TOXENV=py35-marionette
+    - python: 3.5 
+      env: 
+        - MARIONETTE=true
 install:
   - pip install tox-travis
 before_script:
