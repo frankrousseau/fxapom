@@ -26,6 +26,9 @@ matrix:
     - python: 3.5
       env: 
         - TOXENV=flake8
+  exclude:
+    - python: 2.7
+    - python: 3.5
   allow_failures:
     - env: 
        - TOXENV=py35-marionette
